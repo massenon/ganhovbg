@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/social-preview.png" alt="Alerte VBG GANXÔ : plateforme d'alerte et de suivi des violences basées sur le genre pour la communauté LGBTQ au Bénin" width="100%"></p>
+<p align="center"><img src="docs/social-preview.png" alt="GANXÔ Alerte VBG : le logo, le slogan et deux captures du site sur ordinateur et sur téléphone" width="100%"></p>
 
 # GANXÔ · Alerte VBG
 
