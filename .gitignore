@@ -1,0 +1,41 @@
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+
+# Journaux et caches
+error_log
+/storage/logs/*
+/storage/framework/cache/data/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/bootstrap/cache/*.php
+!/bootstrap/cache/.gitignore
+
+# Données réelles : pièces jointes d'alertes, médias, profils (jamais publiés)
+/public/uploads/ticket/*
+/public/uploads/guestticket/*
+/public/uploads/emailtoticket/*
+/public/uploads/support/*
+/public/uploads/comment/*
+/public/uploads/profile/*
+/public/media/*
+/storage/app/import/*
+/storage/app/public/*
+
+# Archives et héritage
+/oldfiles/
+composer.lock.bak
+*.sql
+*.zip
+.DS_Store
+Thumbs.db

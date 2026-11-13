@@ -1,0 +1,24 @@
+/* Ganho — page /assistant (version pleine page). Le widget de conversation et la fenêtre flottante sont dans gn-assistant.css (chargé par le gabarit).
+   Tokens --gn-* uniquement, aucun hexadécimal. Préfixe ga- (page). Sécurité : aucun décor arc-en-ciel autour de l'aide immédiate ni du bouton SOS. */
+
+/* ---------- Page /assistant ---------- */
+.ga-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:var(--gn-space-7);align-items:start}
+.ga-main .gh-chat{max-width:none;margin:0;box-shadow:var(--gn-shadow-md)}
+.ga-main .gh-chat__log{height:min(62vh,560px);min-height:320px}
+.ga-side{display:flex;flex-direction:column;gap:var(--gn-space-5)}
+.ga-card{background:var(--gn-bg-soft);border-radius:var(--gn-radius-lg);padding:var(--gn-space-5)}
+.ga-card h2{font-size:var(--gn-fs-h4);margin:0 0 var(--gn-space-3)}
+.ga-card p{margin:0 0 var(--gn-space-3)}
+.ga-card p:last-child{margin-bottom:0}
+.ga-card--help{background:var(--gn-white);border:2px solid var(--gn-sos)}
+.ga-card--help h2{color:var(--gn-sos)}
+.ga-topics{list-style:none;margin:0 0 var(--gn-space-4);padding:0;display:flex;flex-direction:column;gap:var(--gn-space-2)}
+.ga-topics li{padding-left:var(--gn-space-4);position:relative}
+.ga-topics li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--gn-primary)}
+.ga-card a:not(.gn-btn){color:var(--gn-primary);font-weight:700}
+.ga-note{font-size:var(--gn-fs-sm);color:var(--gn-text-muted)}
+@media (max-width:900px){
+	.ga-grid{grid-template-columns:1fr;gap:var(--gn-space-6)}
+	.ga-main .gh-chat__log{height:min(58vh,480px)}
+	.gh-chat__chips{padding-inline:var(--gn-space-4)}
+}

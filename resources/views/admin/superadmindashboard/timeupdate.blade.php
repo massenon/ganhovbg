@@ -1,0 +1,1 @@
+{{\Carbon\Carbon::now(Auth::user()->timezone)->translatedFormat(setting('time_format'))}}

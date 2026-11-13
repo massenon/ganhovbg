@@ -1,0 +1,86 @@
+@import "../scss/_variables.scss";
+.dark-mode {
+    .ticketnotetrash {
+        background: $dark-body;
+        border: 1px solid $dark-border;
+    }
+    .roles-title {
+        background: $dark-theme2;
+    }
+    .ticket-details ul :nth-child(1):after, .ticket-details ul :nth-child(2):after, .ticket-details ul :nth-child(3):after, .ticket-details ul :nth-child(4):after, .ticket-details ul :nth-child(5):after, .ticket-details ul :nth-child(6):after {
+        background-color: $dark-border;
+    }
+    @media (max-width: 575.98px) {
+        .login-bg1::before {
+            background: #191d43;
+        }
+    }
+    .nav-settings > .nav-item > .nav-link {
+        color: $dark-color;
+        border: 1px solid $dark-border;
+        .nav-setting-icon {
+            border-right: 1px solid $dark-border;
+        }
+    }
+    @media (min-width: 992px) {
+        .landingmain-header.header .horizontal-main {
+            border-bottom: 1px solid $dark-border;
+            box-shadow: none;
+        }
+    }
+}
+.nav-link.icon:focus {
+    box-shadow: none;
+}
+@media (min-width: 992px) {
+    .data-table-btn {
+        left: 200px !important;
+    }
+}
+@media (max-width: 992px) and (min-width: 768px) {
+    .data-table-btn {
+        left: 175px !important;
+    }
+    div.dataTables_wrapper div.dataTables_filter input {
+        width: 120px !important;
+    }
+}
+@media (min-width:1276px) and (max-width:1650px) {
+    .sales-chart {
+        display: block !important;
+        text-align: center !important;
+    }
+}
+.form-group {
+    .select2-container{
+        width: 100% !important;
+    }
+}
+.support-converbody .media-body p:last-child {
+    margin-bottom: 0 !important;
+}
+@media (min-width: 1200px) {
+    .modal-xl {
+        max-width: 1140px !important;
+    }
+}
+.br-br-5 {
+    border-bottom-right-radius: 5px !important;
+}
+.br-tr-5 {
+    border-top-right-radius: 5px !important;
+}
+.notify.vertical-scroll5 {
+    height: auto !important;
+}
+
+.open-pen{
+    top: 180px;
+    left: 25px;
+    z-index: 99;
+}
+
+.openanswer{
+    min-height: 300px;
+
+}

@@ -1,0 +1,81 @@
+/* ==========================================================================
+   Ganho — design tokens (source unique, v1.0.0, 2026-11-10)
+   Couches : primitive -> semantic -> component. Les composants n'utilisent
+   QUE les variables --gn-* sémantiques, jamais un hexadécimal.
+   Jumeau JSON : design-tokens.json (source pour Flutter).
+   Palette relevée sur le logo GANXÔ (barres verticales violet -> rouge).
+   ========================================================================== */
+:root{
+  /* ---------- 1. PRIMITIVES : le spectre du logo ---------- */
+  --gn-violet:#5B2BB8;   --gn-indigo:#2B33C9;  --gn-blue:#0A66E8;
+  --gn-teal:#0F8B6D;     --gn-green:#3F9A1A;   --gn-lime:#80B717;
+  --gn-yellow:#FFBE05;   --gn-orange:#F66100;  --gn-red:#E8381A;
+  --gn-pink:#FF4FA3;     --gn-pink-50:#FFE3F1; --gn-lilac-50:#F8F1FF;
+  --gn-ink:#0B0B14;      --gn-ink-2:#17132B;   --gn-ink-3:#55506B;
+  --gn-white:#FFFFFF;    --gn-line:#E6DFF0;
+  --gn-sos:#C8200E;      --gn-sos-hover:#A81A0B;
+  --gn-ok:#17703A;       --gn-info:#0A66E8;    --gn-warn:#FFBE05;
+  --gn-dark-text:#FFFFFF; --gn-dark-muted:#B9B4D0; --gn-dark-link:#8FA2FF;
+
+  /* ---------- 2. SEMANTIC (thème clair) ---------- */
+  --gn-primary:var(--gn-indigo);          /* action, lien, focus */
+  --gn-primary-hover:#2229A8;
+  --gn-primary-active:#1B2088;
+  --gn-on-primary:var(--gn-white);
+  --gn-accent:var(--gn-pink);             /* décor, jamais seul porteur d'information */
+  --gn-danger:var(--gn-sos);              /* SOS, signalement, suppression — jamais décoratif */
+  --gn-on-danger:var(--gn-white);
+  --gn-bg:var(--gn-white);
+  --gn-bg-soft:var(--gn-lilac-50);
+  --gn-bg-warm:var(--gn-pink-50);
+  --gn-bg-night:var(--gn-ink);            /* héros et pied de page */
+  --gn-surface:var(--gn-white);
+  --gn-border:var(--gn-line);
+  --gn-text:var(--gn-ink-2);
+  --gn-text-muted:var(--gn-ink-3);
+  --gn-text-on-night:var(--gn-dark-text);
+  --gn-text-muted-on-night:var(--gn-dark-muted);
+  --gn-focus-ring:var(--gn-indigo);
+  --gn-primary-rgb:43,51,201; --gn-danger-rgb:200,32,14;
+
+  /* Spectre : à utiliser en bandes ou dégradés, ordre fixe (charte §3.3) */
+  --gn-spectrum:linear-gradient(90deg,var(--gn-violet),var(--gn-indigo),var(--gn-blue),var(--gn-teal),var(--gn-green),var(--gn-yellow),var(--gn-orange),var(--gn-red));
+  --gn-spectrum-text:linear-gradient(90deg,#8FA2FF 0%,#4FB3FF 18%,#3FD6A0 36%,#BDE24A 52%,#FFBE05 68%,#FF7A1A 84%,#FF5A3D 100%); /* titres sur fond nuit uniquement */
+  --gn-stripes:repeating-linear-gradient(180deg,var(--gn-violet) 0 14px,var(--gn-indigo) 14px 28px,var(--gn-blue) 28px 42px,var(--gn-teal) 42px 56px,var(--gn-green) 56px 70px,var(--gn-yellow) 70px 84px,var(--gn-orange) 84px 98px,var(--gn-red) 98px 112px);
+
+  /* ---------- Typographie ---------- */
+  --gn-font-head:"Montserrat",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --gn-font:Arial,"Liberation Sans",Roboto,Helvetica,sans-serif; /* texte courant : Ganho Sans = Arial (Roboto sur Android) */
+  --gn-fs-xs:.75rem;
+  --gn-fs-sm:.875rem; --gn-fs-md:.9375rem;
+  --gn-fs-lg:clamp(1rem,.95rem + .2vw,1.0625rem);
+  --gn-fs-h4:clamp(1.0625rem,1rem + .35vw,1.1875rem);
+  --gn-fs-h3:clamp(1.25rem,1.1rem + .7vw,1.5rem);
+  --gn-fs-h2:clamp(1.5rem,1.2rem + 1.3vw,2.125rem);
+  --gn-fs-h1:clamp(1.75rem,1.3rem + 2vw,3rem);
+  --gn-lh-tight:1.12; --gn-lh-head:1.2; --gn-lh-body:1.6; --gn-measure:68ch;
+
+  /* ---------- Espacement, formes, ombres, mouvement ---------- */
+  --gn-space-1:4px; --gn-space-2:8px; --gn-space-3:12px; --gn-space-4:16px; --gn-space-5:24px;
+  --gn-space-6:32px; --gn-space-7:48px; --gn-space-8:72px; --gn-space-9:112px;
+  --gn-radius-sm:10px; --gn-radius-md:20px; --gn-radius-lg:32px; --gn-radius-pill:999px;
+  --gn-radius-arch:999px 999px var(--gn-radius-lg) var(--gn-radius-lg); /* cadre en arche (photos) */
+  --gn-shadow-sm:0 2px 8px rgba(23,19,43,.08);
+  --gn-shadow-md:0 12px 32px rgba(23,19,43,.12);
+  --gn-shadow-lg:0 24px 64px rgba(23,19,43,.18);
+  --gn-tap:48px;
+  --gn-dur-1:120ms; --gn-dur-2:200ms; --gn-dur-3:320ms;
+  --gn-ease-out:cubic-bezier(.22,1,.36,1);
+  --gn-container:1200px; --gn-gutter:clamp(16px,4vw,32px);
+}
+/* Thème sombre (forum, mode nuit de l'application) */
+:root[data-theme="dark"]{
+  --gn-primary:#8FA2FF; --gn-primary-hover:#AEBBFF; --gn-primary-active:#C6CFFF; --gn-on-primary:var(--gn-ink);
+  --gn-danger:#FF6B5C; --gn-on-danger:var(--gn-ink);
+  --gn-bg:var(--gn-ink); --gn-bg-soft:#141226; --gn-bg-warm:#1D1230; --gn-surface:#171428;
+  --gn-border:#2B2745; --gn-text:#F2EFFA; --gn-text-muted:var(--gn-dark-muted); --gn-focus-ring:#8FA2FF;
+}
+@media (prefers-reduced-motion:reduce){
+  :root{--gn-dur-1:1ms;--gn-dur-2:1ms;--gn-dur-3:1ms}
+  *,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:1ms!important}
+}

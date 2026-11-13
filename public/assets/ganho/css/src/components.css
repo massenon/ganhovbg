@@ -1,0 +1,80 @@
+/* Ganho — composants de base (v1.0.0). Dépend de fonts.css + tokens.css. Aucun hexadécimal ici. */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:96px;font-size:100%}
+body{margin:0;font-family:var(--gn-font);font-size:var(--gn-fs-md);line-height:var(--gn-lh-body);color:var(--gn-text);background:var(--gn-bg);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.gn-btn,.gn-eyebrow,.gn-sos,.gn-badge,.gn-nav,.gn-field label{font-family:var(--gn-font-head)}
+h1,h2,h3,h4{font-weight:800;line-height:var(--gn-lh-head);letter-spacing:-.02em;margin:0 0 var(--gn-space-4);text-wrap:balance}
+h1{font-size:var(--gn-fs-h1);line-height:var(--gn-lh-tight)} h2{font-size:var(--gn-fs-h2)} h3{font-size:var(--gn-fs-h3)} h4{font-size:var(--gn-fs-h4)}
+p{margin:0 0 var(--gn-space-4);max-width:var(--gn-measure)}
+a{color:var(--gn-primary);text-underline-offset:.2em}
+img,svg,video{max-width:100%;height:auto}
+:focus-visible{outline:3px solid var(--gn-focus-ring);outline-offset:2px;border-radius:4px}
+.gn-container{width:min(100% - 2*var(--gn-gutter),var(--gn-container));margin-inline:auto}
+.gn-skip{position:absolute;left:var(--gn-space-4);top:-100px;background:var(--gn-ink);color:var(--gn-white);padding:var(--gn-space-3) var(--gn-space-4);border-radius:var(--gn-radius-sm);z-index:100}
+.gn-skip:focus{top:var(--gn-space-4)}
+.gn-visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Boutons : primaire (indigo), clair (sur nuit), danger (réservé SOS / signalement) */
+.gn-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--gn-space-2);min-height:var(--gn-tap);padding:0 var(--gn-space-5);border:2px solid transparent;border-radius:var(--gn-radius-pill);font:700 var(--gn-fs-md)/1 var(--gn-font-head);text-decoration:none;cursor:pointer;transition:transform var(--gn-dur-2) var(--gn-ease-out),background-color var(--gn-dur-2),box-shadow var(--gn-dur-2)}
+.gn-btn:hover{transform:translateY(-2px);box-shadow:var(--gn-shadow-md)}
+.gn-btn:active{transform:translateY(0)}
+.gn-btn--primary{background:var(--gn-primary);color:var(--gn-on-primary)}
+.gn-btn--primary:hover{background:var(--gn-primary-hover)}
+.gn-btn--light{background:var(--gn-white);color:var(--gn-ink)}
+.gn-btn--ghost{background:transparent;color:inherit;border-color:currentColor}
+.gn-btn--danger{background:var(--gn-danger);color:var(--gn-on-danger)}
+.gn-btn--danger:hover{background:var(--gn-sos-hover)}
+.gn-btn--lg{min-height:56px;padding:0 var(--gn-space-6);font-size:var(--gn-fs-lg)}
+
+/* Carte : coins généreux, ombre douce, AUCUNE bordure colorée latérale */
+.gn-card{background:var(--gn-surface);border-radius:var(--gn-radius-lg);padding:var(--gn-space-6);box-shadow:var(--gn-shadow-sm);transition:transform var(--gn-dur-3) var(--gn-ease-out),box-shadow var(--gn-dur-3)}
+a.gn-card{display:block;color:inherit;text-decoration:none}
+a.gn-card:hover,.gn-card--lift:hover{transform:translateY(-4px);box-shadow:var(--gn-shadow-md)}
+.gn-card--soft{background:var(--gn-bg-soft);box-shadow:none}
+.gn-card--warm{background:var(--gn-bg-warm);box-shadow:none}
+.gn-card--night{background:var(--gn-bg-night);color:var(--gn-text-on-night);box-shadow:none}
+.gn-card__icon{display:grid;place-items:center;width:56px;height:56px;border-radius:var(--gn-radius-md);background:var(--gn-primary);color:var(--gn-on-primary);margin-bottom:var(--gn-space-4)}
+
+/* Cadre en arche (photographies et illustrations) */
+.gn-arch{border-radius:var(--gn-radius-arch);overflow:hidden;aspect-ratio:3/4;background:var(--gn-bg-soft)}
+.gn-arch>img{width:100%;height:100%;object-fit:cover;display:block}
+.gn-arch--outline{outline:2px solid currentColor;outline-offset:10px}
+
+/* Bandes arc-en-ciel : décor (héros, connexion, pieds de section). JAMAIS sur SOS ni sur le formulaire de signalement. */
+.gn-stripes{height:112px;background:var(--gn-stripes);transform:skewY(-3deg)}
+.gn-rule{height:6px;border:0;background:var(--gn-spectrum);border-radius:var(--gn-radius-pill);margin:0}
+.gn-gradient-text{background:var(--gn-spectrum-text);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Sections pleine largeur */
+.gn-section{padding-block:clamp(var(--gn-space-7),8vw,var(--gn-space-9))}
+.gn-section--night{background:var(--gn-bg-night);color:var(--gn-text-on-night)}
+.gn-section--soft{background:var(--gn-bg-soft)}
+.gn-section--warm{background:var(--gn-bg-warm)}
+.gn-section--blue{background:var(--gn-blue);color:var(--gn-white)}
+.gn-section--violet{background:var(--gn-violet);color:var(--gn-white)}
+.gn-section--round-top{border-top-left-radius:var(--gn-radius-lg);border-top-right-radius:var(--gn-radius-lg)}
+.gn-eyebrow{display:inline-block;font-weight:700;font-size:var(--gn-fs-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--gn-primary);margin-bottom:var(--gn-space-3)}
+.gn-section--night .gn-eyebrow{color:var(--gn-yellow)}
+
+/* Champs : 48 px, libellé visible, erreur sous le champ */
+.gn-field{display:grid;gap:var(--gn-space-2);margin-bottom:var(--gn-space-4)}
+.gn-field label{font-weight:700;font-size:var(--gn-fs-sm)}
+.gn-input{width:100%;min-height:var(--gn-tap);padding:0 var(--gn-space-4);border:2px solid var(--gn-border);border-radius:var(--gn-radius-md);background:var(--gn-surface);color:var(--gn-text);font:500 var(--gn-fs-md) var(--gn-font)}
+.gn-input:focus{border-color:var(--gn-primary);outline:3px solid rgba(var(--gn-primary-rgb),.25);outline-offset:0}
+.gn-input[aria-invalid="true"]{border-color:var(--gn-danger)}
+.gn-error{color:var(--gn-danger);font-size:var(--gn-fs-sm);font-weight:600}
+.gn-hint{color:var(--gn-text-muted);font-size:var(--gn-fs-sm)}
+
+/* Badges */
+.gn-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:var(--gn-radius-pill);font-size:var(--gn-fs-xs);font-weight:700;background:var(--gn-bg-soft);color:var(--gn-text)}
+.gn-badge--ok{background:var(--gn-ok);color:var(--gn-white)}
+
+/* Navigation publique : verre sur nuit, sticky */
+.gn-nav{position:sticky;top:0;z-index:50;background:rgba(11,11,20,.88);backdrop-filter:blur(14px);color:var(--gn-white)}
+.gn-nav__in{display:flex;align-items:center;justify-content:space-between;gap:var(--gn-space-5);min-height:72px}
+.gn-nav a:not(.gn-btn){color:inherit;text-decoration:none;font-weight:600;padding:var(--gn-space-3);border-radius:var(--gn-radius-sm)}
+.gn-nav a:not(.gn-btn):hover{background:rgba(255,255,255,.1)}
+
+/* SOS : sobre, jamais de décor arc-en-ciel autour. Maintien 2 s côté produit. */
+.gn-sos{display:inline-flex;align-items:center;gap:var(--gn-space-3);min-height:64px;padding:0 var(--gn-space-6);border-radius:var(--gn-radius-pill);border:0;background:var(--gn-danger);color:var(--gn-on-danger);font:800 var(--gn-fs-lg)/1 var(--gn-font-head);cursor:pointer;box-shadow:0 0 0 6px rgba(var(--gn-danger-rgb),.2)}
+.gn-sos:hover{background:var(--gn-sos-hover)}

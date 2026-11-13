@@ -1,0 +1,23 @@
+/* Navigation fluide : transitions de page natives (View Transitions entre documents).
+   Le fond, l'en-tête et les barres latérales restent en place ; seul le contenu se fond en 0,15 s.
+   Navigateurs sans prise en charge (Firefox) : navigation classique, rien ne casse. */
+@view-transition { navigation: auto; }
+
+/* éléments qui ne bougent pas pendant le changement de page */
+.gh-nav { view-transition-name: gn-nav; }
+.gcx-side, .app-sidebar { view-transition-name: gn-side; }
+.gcx-top, .app-header { view-transition-name: gn-top; }
+
+::view-transition-group(gn-nav),
+::view-transition-group(gn-side),
+::view-transition-group(gn-top) { animation-duration: 0s; }
+
+::view-transition-old(root) { animation: gn-vt-out .12s ease both; }
+::view-transition-new(root) { animation: gn-vt-in .2s ease both; }
+@keyframes gn-vt-out { to { opacity: 0; } }
+@keyframes gn-vt-in { from { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+	@view-transition { navigation: none; }
+	::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}
