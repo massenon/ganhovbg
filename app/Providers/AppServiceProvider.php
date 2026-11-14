@@ -19,7 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // Reessaie la connexion MySQL quand l'hebergeur sature max_user_connections (voir RetryMySqlConnector).
+        $this->app->bind('db.connector.mysql', \App\Database\RetryMySqlConnector::class);
     }
 
     /**

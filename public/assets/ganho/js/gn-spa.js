@@ -164,11 +164,16 @@
     if (c && Date.now() - c.t < 30000) { delete cache[k]; return c.p; }
     return fetchPage(u.href, { signal: signal });
   }
+  /* Prechargement prudent : l'hebergeur limite les connexions MySQL simultanees (forum et site partagent l'utilisateur). */
+  var prefetchCount = 0, prefetchBusy = 0;
   function prefetch(u) {
     var k = u.href.split('#')[0];
+    try { if (navigator.connection && navigator.connection.saveData) { return; } } catch (e) {}
+    if (prefetchBusy >= 1 || prefetchCount >= 8) { return; }
     if (cache[k] && Date.now() - cache[k].t < 30000) { return; }
     var keys = Object.keys(cache); if (keys.length > 20) { delete cache[keys[0]]; }
-    cache[k] = { t: Date.now(), p: fetchPage(u.href).catch(function () { delete cache[k]; return { res: { ok: false }, text: '', html: false, url: k }; }) };
+    prefetchCount++; prefetchBusy++;
+    cache[k] = { t: Date.now(), p: fetchPage(u.href).catch(function () { delete cache[k]; return { res: { ok: false }, text: '', html: false, url: k }; }).then(function (r) { prefetchBusy--; return r; }) };
   }
 
   function loadScript(attrs, text) {
@@ -482,7 +487,7 @@
     D.addEventListener('mouseover', function (e) {
       var a = e.target && e.target.closest ? e.target.closest('a[href]') : null, u = eligibleLink(a, null);
       clearTimeout(hoverT);
-      if (u) { hoverT = setTimeout(function () { prefetch(u); }, 80); }
+      if (u) { hoverT = setTimeout(function () { prefetch(u); }, 160); }
     }, { passive: true });
     D.addEventListener('touchstart', function (e) {
       var a = e.target && e.target.closest ? e.target.closest('a[href]') : null, u = eligibleLink(a, null);

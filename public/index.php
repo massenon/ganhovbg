@@ -16,6 +16,9 @@ License         :   Licensed under ThemeForest Licence
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
+// Les arguments des fonctions n'apparaissent plus dans les traces d'erreur (sinon le mot de passe MySQL se retrouve dans les journaux).
+@ini_set('zend.exception_ignore_args', '1');
+
 define('LARAVEL_START', microtime(true));
 
 // Anciennes URL /customer/* et /admin/* : redirection 301 (GET) ou réécriture interne (POST, DELETE…) vers /espace-client/* et /administration/*

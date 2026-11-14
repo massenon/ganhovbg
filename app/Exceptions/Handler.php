@@ -72,7 +72,34 @@ class Handler extends ExceptionHandler
         if ($exception instanceof \Exception && $exception->getMessage() === 'error response') {
             return new Response('');
         }
+        if ($this->isDatabaseSaturated($exception)) {
+            // Base saturee (limite de connexions de l'hebergeur) : page claire, sans acces a la base, et nouvel essai conseille.
+            if ($request->expectsJson()) {
+                return response()->json(['error' => 'service_busy', 'message' => 'Le service est tres sollicite. Reessayez dans quelques secondes.'], 503, ['Retry-After' => '15']);
+            }
+            return response()->view('errors.gn-min', [
+                'gcCode' => '503',
+                'gcPhoto' => '18',
+                'gcHeading' => 'Le site est très sollicité',
+                'gcText' => 'Beaucoup de personnes se connectent en même temps. Patientez quelques secondes puis réessayez : rien n’est perdu.',
+                'gcActions' => [['Réessayer', $request->fullUrl(), 'gn-btn--light']],
+            ], 503, ['Retry-After' => '15', 'Cache-Control' => 'no-store']);
+        }
         return parent::render($request, $exception);
+    }
+
+    /** Erreurs de connexion MySQL liees a la saturation de l'hebergeur (1040, 1203) ou a une coupure (2002, 2006, 2013). */
+    protected function isDatabaseSaturated(Throwable $e)
+    {
+        for ($x = $e; $x; $x = $x->getPrevious()) {
+            if ($x instanceof \PDOException || $x instanceof \Illuminate\Database\QueryException) {
+                $code = (int) ($x instanceof \Illuminate\Database\QueryException ? ($x->errorInfo[1] ?? $x->getCode()) : $x->getCode());
+                if (in_array($code, [1040, 1203, 1226, 2002, 2006, 2013], true)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 

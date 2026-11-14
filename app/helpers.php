@@ -110,13 +110,19 @@ function gn_url($path = '/')
 	return rtrim(config('app.url'), '/') . '/' . ltrim($path, '/');
 }
 
-/** URL du forum, derivee de config('app.url') : https://ganho.app -> https://forum.ganho.app */
+/**
+ * URL du forum : config('gn.forum_url') (FORUM_URL, par defaut https://forum.ganho.app).
+ * Seul un APP_URL local (*.localhost) bascule sur l'adresse locale forum.<hote>, pour le developpement.
+ */
 function gn_forum_url($path = '/')
 {
-	$parts = parse_url(config('app.url'));
-	$host = preg_replace('/^www\./', '', $parts['host'] ?? 'ganho.app');
-	$port = isset($parts['port']) ? ':' . $parts['port'] : '';
-	return ($parts['scheme'] ?? 'https') . '://forum.' . $host . $port . '/' . ltrim($path, '/');
+	$app = parse_url((string) config('app.url'));
+	$host = $app['host'] ?? '';
+	if ($host !== '' && preg_match('/(^|\.)localhost$/i', $host)) {
+		$port = isset($app['port']) ? ':' . $app['port'] : '';
+		return ($app['scheme'] ?? 'http') . '://forum.' . preg_replace('/^www\./', '', $host) . $port . '/' . ltrim($path, '/');
+	}
+	return rtrim((string) config('gn.forum_url', 'https://forum.ganho.app'), '/') . '/' . ltrim($path, '/');
 }
 
 /**
