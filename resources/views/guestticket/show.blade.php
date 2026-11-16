@@ -350,7 +350,7 @@
 								</div>
 								<div class="card-body readmores pt-2">
 									<div>
-										<span>{!! $ticket->message !!}</span>
+										<span>{!! \App\Support\TicketText::html($ticket->message) !!}</span>
 										<div class="row galleryopen mt-4">
                                             <div class="uhelp-attach-container flex-wrap">
                                                 @foreach ($ticket->getMedia('ticket') as $ticketss)

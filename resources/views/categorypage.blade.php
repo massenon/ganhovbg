@@ -10,11 +10,15 @@
 		->sortByDesc('created_at')->unique('id')->values();
 	$gnCatUrl = '/category/' . ($category->categoryslug ?: $category->id);
 	$gnPopular = collect(method_exists($populararticles ?? null, 'items') ? $populararticles->items() : ($populararticles ?? []))->filter(function ($a) { return strtolower((string) $a->status) === 'published'; })->values();
-	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('customer/login');
+	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('espace-client/connexion');
+
+	$gnIntro = trim((string) setting('category_intro:' . ($category->categoryslug ?: $category->id)));
+	$gnIntroParas = $gnIntro === '' ? [] : array_values(array_filter(preg_split('/\R{2,}/u', $gnIntro)));
+	$gnIntroMeta = $gnIntro === '' ? null : \Illuminate\Support\Str::limit(trim(preg_replace('/\s+/u', ' ', $gnIntroParas[0] ?? '')), 155, '…');
 
 	$seo = [
 		'title' => \Illuminate\Support\Str::limit($gnCatName, 44, '…') . ' : articles | GANXÔ',
-		'description' => 'Tous les articles de la catégorie « ' . $gnCatName . ' » sur GANXÔ Alerte VBG : ' . $gnPosts->count() . ' ' . ($gnPosts->count() > 1 ? 'articles publiés' : 'article publié') . ' pour comprendre et trouver de l’aide.',
+		'description' => $gnIntroMeta ?: 'Tous les articles de la catégorie « ' . $gnCatName . ' » sur GANXÔ Alerte VBG : ' . $gnPosts->count() . ' ' . ($gnPosts->count() > 1 ? 'articles publiés' : 'article publié') . ' pour comprendre et trouver de l’aide.',
 		'breadcrumbs' => [['Accueil', '/'], ['Actualités', '/knowledge'], [\Illuminate\Support\Str::limit($gnCatName, 50, '…'), $gnCatUrl]],
 	];
 	$gcEyebrow = 'Catégorie';
@@ -33,6 +37,17 @@
 @section('content')
 
 	@include('includes.gc.hero')
+
+	@if (count($gnIntroParas))
+		<section class="gn-section" aria-labelledby="gc-intro-title" style="padding-bottom:0">
+			<div class="gn-container"><div style="max-width:46rem">
+				<h2 id="gc-intro-title" class="gn-visually-hidden">À propos de cette catégorie</h2>
+				@foreach ($gnIntroParas as $para)
+					<p>{{ $para }}</p>
+				@endforeach
+			</div></div>
+		</section>
+	@endif
 
 	<section class="gn-section" aria-labelledby="gc-list-title">
 		<div class="gn-container">

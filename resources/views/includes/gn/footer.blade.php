@@ -2,7 +2,7 @@
 	// pages d'erreur : les variables du contrôleur peuvent manquer
 	$page = $page ?? \App\Models\Pages::all();
 	$footertext = $footertext ?? \App\Models\Footertext::first();
-	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('customer/login');
+	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('espace-client/connexion');
 	$gnFaqCats = \App\Models\FaqCategory::where('status', '1')->orderBy('id')->take(5)->get();
 @endphp
 <footer class="gh-foot">

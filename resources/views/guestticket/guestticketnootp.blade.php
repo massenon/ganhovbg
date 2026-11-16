@@ -12,7 +12,6 @@
 
 @push('gn_head')
 <link rel="stylesheet" href="{{ gn_asset('assets/ganho/css/pages-forms.css') }}">
-<link rel="stylesheet" href="{{ gn_asset('assets/plugins/summernote/summernote.css') }}">
 @if(setting('GUEST_FILE_UPLOAD_ENABLE') == 'yes')<link rel="stylesheet" href="{{ gn_asset('assets/plugins/dropzone/dropzone.css') }}">@endif
 @endpush
 

@@ -1,6 +1,6 @@
 @extends('layouts.gnauth')
 @php
-	$seo = ['title' => 'Connexion à votre espace GANXÔ', 'description' => 'Connectez-vous ou créez votre compte GANXÔ Alerte VBG avec un compte existant.', 'breadcrumbs' => [['Accueil', '/'], ['Connexion', '/customer/login']], 'canonical' => gn_url('customer/login')];
+	$seo = ['title' => 'Connexion à votre espace GANXÔ', 'description' => 'Connectez-vous ou créez votre compte GANXÔ Alerte VBG avec un compte existant.', 'breadcrumbs' => [['Accueil', '/'], ['Connexion', '/espace-client/connexion']], 'canonical' => gn_url('espace-client/connexion')];
 @endphp
 
 @section('gn_eyebrow', 'Votre espace')

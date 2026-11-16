@@ -1,7 +1,7 @@
 {{-- Carte d'article. Params : $a (Article), $lead (bool, opt.) --}}
 @php
 	$gcFile = $a->featureimage ? ($a->featureimage == 'frontend.jpg' ? 'uploads/featureimage/demo/frontend.jpg' : 'uploads/featureimage/' . $a->featureimage) : null;
-	$gcImg = $gcFile ? gn_picture($gcFile, 'Illustration de l’article : ' . $a->title, $a->title, !empty($lead) ? '(max-width: 1000px) 92vw, 660px' : '(max-width: 640px) 92vw, (max-width: 1000px) 46vw, 380px', 'loading="lazy"') : '';
+	$gcImg = $gcFile ? gn_picture($gcFile, 'Illustration de l’article : ' . $a->title, $a->title, !empty($lead) ? '(max-width: 1000px) 92vw, 660px' : '(max-width: 640px) 92vw, (max-width: 1000px) 46vw, 380px', !empty($lead) ? 'fetchpriority="high"' : 'loading="lazy"') : '';
 	$gcHref = url('/article/' . ($a->articleslug ?: $a->id));
 	$gcPrivate = $a->privatemode == 1;
 @endphp

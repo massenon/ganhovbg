@@ -1,6 +1,6 @@
 {{-- Bouton SOS fixe (maintien 2 s) + confirmation avant toute lecture de la position. Sobre : aucun décor arc-en-ciel. --}}
 @php
-	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('customer/login');
+	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('espace-client/connexion');
 @endphp
 <button type="button" class="gn-sos" id="gn-sos" aria-describedby="gn-sos-desc" data-alert-url="{{ $gnAlertUrl }}">
 	<span class="gn-sos__fill" aria-hidden="true"></span>

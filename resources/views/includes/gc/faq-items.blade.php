@@ -5,7 +5,7 @@
 			<summary><h{{ $hl ?? 3 }}>{{ $it['q'] }}</h{{ $hl ?? 3 }}></summary>
 			<div class="gh-acc__a">
 				@if($it['locked'])
-					<p>Vous devez être connecté·e pour accéder à ce contenu. <a href="{{ url('customer/login') }}">Se connecter</a></p>
+					<p>Vous devez être connecté·e pour accéder à ce contenu. <a href="{{ url('espace-client/connexion') }}">Se connecter</a></p>
 				@else
 					{!! $it['html'] !!}
 				@endif

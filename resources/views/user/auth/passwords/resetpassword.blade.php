@@ -1,6 +1,6 @@
 @extends('layouts.gnauth')
 @php
-	$seo = ['title' => 'Nouveau mot de passe : GANXÔ Alerte VBG', 'description' => 'Choisissez un nouveau mot de passe pour votre compte GANXÔ Alerte VBG.', 'breadcrumbs' => [['Accueil', '/'], ['Connexion', '/customer/login'], ['Nouveau mot de passe', '/customer/login']], 'canonical' => gn_url('customer/login')];
+	$seo = ['title' => 'Nouveau mot de passe : GANXÔ Alerte VBG', 'description' => 'Choisissez un nouveau mot de passe pour votre compte GANXÔ Alerte VBG.', 'breadcrumbs' => [['Accueil', '/'], ['Connexion', '/espace-client/connexion'], ['Nouveau mot de passe', '/espace-client/connexion']], 'canonical' => gn_url('espace-client/connexion')];
 @endphp
 
 @section('gn_eyebrow', 'Votre espace')

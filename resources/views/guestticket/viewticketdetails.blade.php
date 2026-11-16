@@ -42,7 +42,7 @@
                                     <img src="{{asset('assets/images/svgs/check.svg')}}" alt="img" class="w-10">
                                     <h6 class="mt-5 fs-20 leading-normal">{{lang('Merci de nous avoir soumis votre arlette VBG. Vos arlettes sont toujours notre priorité absolue. Notre équipe vous assistera ')}}</h6>
                                      <p class="mt-3 mb-5 fs-16"> {{lang('Veuillez vous enregistrer pour une suivie adéquate de vos cas.')}} </p>
-                                     <a class="btn ripple btn-primary" href="{{route('gusettiket',$ticket->ticket_id)}}">{{lang('Voir l\'arlette')}}</a>
+                                     <a class="btn ripple btn-primary" href="{{route('gusetticket',$ticket->ticket_id)}}">{{lang('Voir l\'arlette')}}</a>
 								</div>
                             </div>
                         </div>

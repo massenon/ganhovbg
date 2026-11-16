@@ -206,10 +206,10 @@
 						@endif
 						@else
 
-						<li><a href="{{url('customer/login')}}">Se connecter</a></li>
+						<li><a href="{{url('espace-client/connexion')}}">Se connecter</a></li>
 						@if(setting('REGISTER_DISABLE') == 'on')
 
-						<li><a href="{{url('customer/register')}}">S\'inscrire</a></li>
+						<li><a href="{{url('espace-client/inscription')}}">S\'inscrire</a></li>
 						@endif
 						@endif
 

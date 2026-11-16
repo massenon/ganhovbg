@@ -15,6 +15,19 @@ RewriteRule ^ server.php
 
 </IfModule>
 
+# En-têtes de sécurité pour les pages dynamiques (en production, le domaine pointe sur cette racine : seul CE fichier s'applique à server.php ;
+# public/.htaccess couvre les fichiers statiques). HSTS uniquement quand la requête est en HTTPS.
+# Pas de CSP restrictive (scripts en ligne du gabarit) : seules les directives sans risque de casse sont posées.
+# geolocation=(self) : le bouton SOS peut proposer la position (jamais sans accord de la personne).
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(self), payment=(), usb=()"
+    Header always set Content-Security-Policy "frame-ancestors 'self'; base-uri 'self'; object-src 'none'"
+    Header always set Strict-Transport-Security "max-age=31536000" "expr=%{HTTPS} == 'on'"
+</IfModule>
+
 # BEGIN cPanel-generated php ini directives, do not edit
 # Manual editing of this file may result in unexpected behavior.
 # To make changes to this file, use the cPanel MultiPHP INI Editor (Home >> Software >> MultiPHP INI Editor)

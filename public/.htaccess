@@ -21,6 +21,18 @@
 </IfModule>
 
 # --- Performance (13 nov. 2026) : compression et cache navigateur des fichiers statiques ---
+# En-têtes de sécurité (mod_headers). HSTS uniquement quand la requête est en HTTPS.
+# Pas de CSP restrictive (scripts en ligne du gabarit) : seules les directives sans risque de casse sont posées.
+# geolocation=(self) : le bouton SOS peut proposer la position (jamais sans accord de la personne).
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(self), payment=(), usb=()"
+    Header always set Content-Security-Policy "frame-ancestors 'self'; base-uri 'self'; object-src 'none'"
+    Header always set Strict-Transport-Security "max-age=31536000" "expr=%{HTTPS} == 'on'"
+</IfModule>
+
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml application/javascript text/javascript application/json application/xml image/svg+xml application/manifest+json font/ttf application/vnd.ms-fontobject
 </IfModule>

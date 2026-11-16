@@ -10,12 +10,12 @@
 	$siteName = 'GANXÔ Alerte VBG';
 	$path = trim(request()->path(), '/');
 	$pageTitle = $seo['title'] ?? 'GANXÔ Alerte VBG : plateforme d’assistance';
-	if (mb_strlen($pageTitle) > 60) { $pageTitle = \Illuminate\Support\Str::limit($pageTitle, 60, '…'); }
+	if (mb_strlen($pageTitle) > 60) { $pageTitle = \Illuminate\Support\Str::limit($pageTitle, 59, '…'); }
 	$desc = $seo['description'] ?? trim(strip_tags((string) ($seopage->description ?? '')));
 	if ($desc === '') { $desc = 'Plateforme d’assistance confidentielle pour les victimes ou témoins de violences basées sur le genre et les personnes en détresse psychologique.'; }
 	$desc = \Illuminate\Support\Str::limit(preg_replace('/\s+/', ' ', $desc), 155, '…');
 	$canonical = $seo['canonical'] ?? gn_url($path === '' ? '/' : $path);
-	$noindexPrefixes = ['customer', 'admin', 'search', 'comment', 'replies', 'rating', 'login', 'register', 'install'];
+	$noindexPrefixes = ['customer', 'espace-client', 'admin', 'administration', 'search', 'comment', 'replies', 'rating', 'login', 'register', 'install'];
 	$firstSeg = explode('/', $path)[0] ?? '';
 	$isGuestTicket = $firstSeg === 'guest' && $path !== 'guest/openticket';
 	$robots = $seo['robots'] ?? ((in_array($firstSeg, $noindexPrefixes, true) || $isGuestTicket) ? 'noindex,follow' : 'index,follow,max-image-preview:large,max-snippet:-1');

@@ -46,7 +46,7 @@
                         <h4>{{ $showprintticket->subject }} </h4>
                     </div>
                     <div>
-                        <span>{!! $showprintticket->message !!}</span>
+                        <span>{!! \App\Support\TicketText::html($showprintticket->message) !!}</span>
                     </div>
 
                     <div class="row">

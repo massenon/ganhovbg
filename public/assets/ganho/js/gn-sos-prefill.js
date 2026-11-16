@@ -24,16 +24,11 @@
   var tries = 0;
   (function fill() {
     var ta = document.querySelector('textarea[name="message"]');
-    var ready = ta && (!window.jQuery || !jQuery.fn.summernote || ta.nextElementSibling && /note-editor/.test(ta.nextElementSibling.className) || tries > 40);
-    if (!ready) { tries++; return setTimeout(fill, 150); }
-    var html = '<p>' + text.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</p><p><br></p>';
-    if (window.jQuery && jQuery.fn.summernote && ta.nextElementSibling && /note-editor/.test(ta.nextElementSibling.className)) {
-      jQuery(ta).summernote('code', html);
-    } else {
-      ta.value = text + '\n\n';
-    }
+    if (!ta) { if (++tries < 40) { return setTimeout(fill, 150); } return; }
+    ta.value = text + '\n\n';
+    ta.dispatchEvent(new Event('input', { bubbles: true }));
     var subj = document.getElementById('subject') || document.querySelector('input[name="subject"]');
-    if (subj && !subj.value) subj.value = 'Alerte SOS avec position';
+    if (subj && !subj.value) { subj.value = 'Alerte SOS avec position'; subj.dispatchEvent(new Event('input', { bubbles: true })); }
     notice();
     try { sessionStorage.removeItem('gn_sos'); } catch (e) {}
   })();

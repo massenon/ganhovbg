@@ -1,5 +1,5 @@
 {{-- Bandeau d'aide : maillage FAQ -> contact / alerte --}}
-@php $gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('customer/login'); @endphp
+@php $gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('espace-client/connexion'); @endphp
 <section class="gn-section gc-help-sec" aria-labelledby="gc-help-title">
 	<div class="gn-container">
 		<div class="gc-help">

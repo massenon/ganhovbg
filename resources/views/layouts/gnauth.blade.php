@@ -3,7 +3,7 @@
 	// Coque des pages d'authentification cliente (Ganho) : nuit + bandes du spectre, carte blanche à 32 px.
 	// La page enfant fournit $seo (avant) et les sections gn_eyebrow, gn_h1, gn_lead, gn_form, et @push('gn_scripts') si besoin.
 	$gnLean = true;
-	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('customer/login');
+	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('espace-client/connexion');
 @endphp
 
 @push('gn_head')

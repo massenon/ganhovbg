@@ -101,7 +101,7 @@
 												</div>
 												<div class="card-body pt-2 readmores px-6 mx-1">
 													<div>
-														<span>{!! $tickettrashedview->message !!}</span>
+														<span>{!! \App\Support\TicketText::html($tickettrashedview->message) !!}</span>
 
 														<div class="row galleryopen">
 															@foreach ($tickettrashedview->getMedia('ticket') as $tickettrashedviewss)

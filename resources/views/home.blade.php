@@ -3,7 +3,7 @@
 @php
 	// Mise en page allégée « Ganho » (voir layouts/gnlean) + SEO de la page d'accueil
 	$gnLean = true;
-	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('customer/login');
+	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('espace-client/connexion');
 
 	// FAQ visible : base de données, sinon texte neutre et honnête
 	$gnFaq = [];

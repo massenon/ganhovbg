@@ -1,6 +1,6 @@
 @extends('layouts.gnauth')
 @php
-	$seo = ['title' => 'Connexion à votre espace GANXÔ', 'description' => 'Connectez-vous à votre compte GANXÔ Alerte VBG pour suivre vos alertes et échanger avec l’équipe.', 'breadcrumbs' => [['Accueil', '/'], ['Connexion', '/customer/login']]];
+	$seo = ['title' => 'Connexion à votre espace GANXÔ', 'description' => 'Connectez-vous à votre compte GANXÔ Alerte VBG pour suivre vos alertes et échanger avec l’équipe.', 'breadcrumbs' => [['Accueil', '/'], ['Connexion', '/espace-client/connexion']]];
 @endphp
 
 @section('gn_eyebrow', 'Votre espace')
@@ -58,7 +58,7 @@
 		<button class="gn-btn gn-btn--primary gn-btn--block" type="submit" onclick="login();this.form.submit();this.disabled=true;">{{lang('Se connecter')}}</button>
 
 		<div class="gnf-links">
-			<p><a href="{{url('customer/forgotpassword')}}">{{lang('Mot de passe oublié?')}}</a></p>
+			<p><a href="{{url('espace-client/mot-de-passe-oublie')}}">{{lang('Mot de passe oublié?')}}</a></p>
 			@if(setting('REGISTER_DISABLE') == 'on')
 			<p>Pas encore de compte ? <a href="{{route('auth.register')}}">{{lang('Register', 'menu')}}</a></p>
 			@endif

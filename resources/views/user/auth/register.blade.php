@@ -1,6 +1,6 @@
 @extends('layouts.gnauth')
 @php
-	$seo = ['title' => 'Créer un compte GANXÔ Alerte VBG', 'description' => 'Créez votre compte GANXÔ Alerte VBG pour suivre vos alertes et échanger avec l’équipe en toute simplicité.', 'breadcrumbs' => [['Accueil', '/'], ['Connexion', '/customer/login'], ['Créer un compte', '/customer/register']]];
+	$seo = ['title' => 'Créer un compte GANXÔ Alerte VBG', 'description' => 'Créez votre compte GANXÔ Alerte VBG pour suivre vos alertes et échanger avec l’équipe en toute simplicité.', 'breadcrumbs' => [['Accueil', '/'], ['Connexion', '/espace-client/connexion'], ['Créer un compte', '/espace-client/inscription']]];
 @endphp
 
 @section('gn_eyebrow', 'Votre espace')
@@ -121,7 +121,7 @@
 		<button type="submit" class="gn-btn gn-btn--primary gn-btn--block" id="register_button">Créer mon compte</button>
 
 		<div class="gnf-links">
-			<p>Vous avez déjà un compte ? <a href="{{url('customer/login')}}">{{lang('Se connecter')}}</a></p>
+			<p>Vous avez déjà un compte ? <a href="{{url('espace-client/connexion')}}">{{lang('Se connecter')}}</a></p>
 			<p><a href="{{url('/')}}">{{lang('Retour')}}</a></p>
 		</div>
 	</form>
@@ -194,7 +194,7 @@
 				if (data.error) { toastr.error(data.error); reset(); }
 				if (data.success) {
 					toastr.success(data.success);
-					window.location.replace('{{url('customer/login')}}');
+					window.location.replace('{{url('espace-client/connexion')}}');
 				}
 			}).catch(function () { reset(); });
 		});

@@ -101,7 +101,7 @@ class GuestticketController extends Controller
             $this->validate($request, [
                 'subject' => 'required|max:255',
                 'category' => 'required',
-                'message' => 'required',
+                'message' => 'required|string|max:4000',
                 'verifyotp' => 'required',
                 'agree_terms' =>  'required|in:agreed',
 
@@ -112,7 +112,7 @@ class GuestticketController extends Controller
                     $request->validate([
                         'subject' => 'required|max:255',
                         'category' => 'required',
-                        'message' => 'required',
+                        'message' => 'required|string|max:4000',
                         'captcha' => ['required', 'captcha'],
                         'verifyotp' => 'required',
                         'agree_terms' =>  'required|in:agreed',
@@ -122,7 +122,7 @@ class GuestticketController extends Controller
                     $request->validate([
                         'subject' => 'required|max:255',
                         'category' => 'required',
-                        'message' => 'required',
+                        'message' => 'required|string|max:4000',
                         'verifyotp' => 'required',
                         'agree_terms' =>  'required|in:agreed',
 
@@ -136,7 +136,7 @@ class GuestticketController extends Controller
                     $request->validate([
                         'subject' => 'required|max:255',
                         'category' => 'required',
-                        'message' => 'required',
+                        'message' => 'required|string|max:4000',
                         'g-recaptcha-response' => 'required|recaptcha',
                         'verifyotp' => 'required',
                         'agree_terms' =>  'required|in:agreed',
@@ -147,7 +147,7 @@ class GuestticketController extends Controller
                     $request->validate([
                         'subject' => 'required|max:255',
                         'category' => 'required',
-                        'message' => 'required',
+                        'message' => 'required|string|max:4000',
                         'verifyotp' => 'required',
                         'agree_terms' =>  'required|in:agreed',
 
@@ -306,7 +306,7 @@ class GuestticketController extends Controller
                     'ticket_id' => $ticket->ticket_id,
                     'ticket_title' => $ticket->subject,
                     'ticket_status' => $ticket->status,
-                    'ticket_description' => $ticket->message,
+                    'ticket_description' => \App\Support\TicketText::html($ticket->message),
                     'ticket_customer_url' => route('guest.ticketdetailshow', $ticket->ticket_id),
                     'ticket_admin_url' => url('/administration/ticket-view/' . $ticket->ticket_id),
                 ];
@@ -400,7 +400,7 @@ class GuestticketController extends Controller
                 $this->validate($request, [
                     'subject' => 'required|max:255',
                     'category' => 'required',
-                    'message' => 'required',
+                    'message' => 'required|string|max:4000',
                     'email' => 'required|max:255|indisposable|email',
                     'agree_terms' =>  'required|in:agreed',
 
@@ -411,7 +411,7 @@ class GuestticketController extends Controller
                         $request->validate([
                             'subject' => 'required|max:255',
                             'category' => 'required',
-                            'message' => 'required',
+                            'message' => 'required|string|max:4000',
                             'email' => 'required|max:255|indisposable|email',
                             'captcha' => ['required', 'captcha'],
                             'agree_terms' =>  'required|in:agreed',
@@ -422,7 +422,7 @@ class GuestticketController extends Controller
                             'subject' => 'required|max:255',
                             'category' => 'required',
                             'email' => 'required|max:255|indisposable|email',
-                            'message' => 'required',
+                            'message' => 'required|string|max:4000',
                             'agree_terms' =>  'required|in:agreed',
 
                         ]);
@@ -435,7 +435,7 @@ class GuestticketController extends Controller
                         $request->validate([
                             'subject' => 'required|max:255',
                             'category' => 'required',
-                            'message' => 'required',
+                            'message' => 'required|string|max:4000',
                             'email' => 'required|max:255|indisposable|email',
                             'g-recaptcha-response' => 'required|recaptcha',
                             'agree_terms' =>  'required|in:agreed',
@@ -447,7 +447,7 @@ class GuestticketController extends Controller
                             'subject' => 'required|max:255',
                             'category' => 'required',
                             'email' => 'required|max:255|indisposable|email',
-                            'message' => 'required',
+                            'message' => 'required|string|max:4000',
                             'agree_terms' =>  'required|in:agreed',
 
                         ]);
@@ -720,7 +720,7 @@ class GuestticketController extends Controller
                 'ticket_title' => $ticket->subject,
                 'ticket_id' => $ticket->ticket_id,
                 'ticket_status' => $ticket->status,
-                'ticket_description' => $ticket->message,
+                'ticket_description' => \App\Support\TicketText::html($ticket->message),
                 'ticket_customer_url' => route('guest.ticketdetailshow', $ticket->ticket_id),
                 'ticket_admin_url' => url('/administration/ticket-view/' . $ticket->ticket_id),
             ];
@@ -1033,7 +1033,7 @@ class GuestticketController extends Controller
                     'ticket_title' => $ticket->subject,
                     'ticket_status' => $ticket->status,
                     'comment' => $comment->comment,
-                    'ticket_description' => $ticket->message,
+                    'ticket_description' => \App\Support\TicketText::html($ticket->message),
                     'ticket_customer_url' => route('loadmore.load_data', $ticket->ticket_id),
                     'ticket_admin_url' => url('/administration/ticket-view/' . $ticket->ticket_id),
                 ];
@@ -1816,7 +1816,7 @@ class GuestticketController extends Controller
 
         $ticketData = [
             'ticket_title' => $ticket->subject,
-            'ticket_description' => $ticket->message,
+            'ticket_description' => \App\Support\TicketText::html($ticket->message),
             'ticket_id' => $ticket->ticket_id,
             'ticket_username' => $ticket->cust->username,
             'ticket_status' => $ticket->status,

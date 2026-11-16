@@ -92,10 +92,14 @@
 <section class="gnf-section" aria-labelledby="gnf-s3">
 	<h3 class="gnf-section-title" id="gnf-s3"><span class="gnf-step" aria-hidden="true">3</span>Votre message</h3>
 
-	<div class="gnf-field ticket-summernote">
+	@php $gnDescMin = 20; $gnDescMax = 4000; @endphp
+	<div class="gnf-field">
 		<label for="gnf-message" id="gnf-message-label">Description de la situation <span class="gnf-req" aria-hidden="true">*</span><span class="gn-visually-hidden">(obligatoire)</span></label>
-		<textarea class="gnf-ctl summernote @error('message') is-invalid @enderror" id="gnf-message" name="message"></textarea>
-		<p class="gnf-help" id="gnf-message-help">Racontez ce qui s’est passé, quand et où, à votre rythme. Ces précisions aident l’équipe à vous répondre.</p>
+		<textarea class="gnf-ctl @error('message') is-invalid @enderror" id="gnf-message" name="message" rows="8" maxlength="{{ $gnDescMax }}" aria-required="true" aria-describedby="gnf-message-help gnf-message-count MessageError" autocomplete="off">{{ old('message') }}</textarea>
+		<div class="gnf-helprow">
+			<p class="gnf-help" id="gnf-message-help">Racontez ce qui s’est passé, quand et où, à votre rythme. Ces précisions aident l’équipe à vous répondre. Écrivez simplement, sans mise en forme.</p>
+			<span class="gnf-counter" id="gnf-message-count" data-max="{{ $gnDescMax }}" data-min="{{ $gnDescMin }}"><span id="gnf-message-n">0</span>/{{ $gnDescMax }}<span class="gn-visually-hidden"> caractères</span></span>
+		</div>
 		<span id="MessageError" class="gnf-error alert-message"></span>
 	</div>
 

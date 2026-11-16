@@ -1,6 +1,6 @@
 @extends('layouts.gnauth')
 @php
-	$seo = ['title' => 'Vérification de votre e-mail : GANXÔ', 'description' => 'Recevez un nouveau lien pour vérifier l’adresse e-mail de votre compte GANXÔ Alerte VBG.', 'breadcrumbs' => [['Accueil', '/'], ['Connexion', '/customer/login'], ['Vérification de l’e-mail', '/customer/emailverification']]];
+	$seo = ['title' => 'Vérification de votre e-mail : GANXÔ', 'description' => 'Recevez un nouveau lien pour vérifier l’adresse e-mail de votre compte GANXÔ Alerte VBG.', 'breadcrumbs' => [['Accueil', '/'], ['Connexion', '/espace-client/connexion'], ['Vérification de l’e-mail', '/customer/emailverification']]];
 @endphp
 
 @section('gn_eyebrow', 'Votre espace')

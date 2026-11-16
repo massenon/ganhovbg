@@ -1,6 +1,6 @@
 @extends('layouts.gnauth')
 @php
-	$seo = ['title' => 'Mot de passe oublié : GANXÔ Alerte VBG', 'description' => 'Saisissez l’adresse e-mail liée à votre compte GANXÔ pour recevoir un lien de réinitialisation du mot de passe.', 'breadcrumbs' => [['Accueil', '/'], ['Connexion', '/customer/login'], ['Mot de passe oublié', '/customer/forgotpassword']]];
+	$seo = ['title' => 'Mot de passe oublié : GANXÔ Alerte VBG', 'description' => 'Saisissez l’adresse e-mail liée à votre compte GANXÔ pour recevoir un lien de réinitialisation du mot de passe.', 'breadcrumbs' => [['Accueil', '/'], ['Connexion', '/espace-client/connexion'], ['Mot de passe oublié', '/espace-client/mot-de-passe-oublie']]];
 @endphp
 
 @section('gn_eyebrow', 'Votre espace')
@@ -21,7 +21,7 @@
 		</div>
 		<button class="gn-btn gn-btn--primary gn-btn--block" type="submit" onclick="this.disabled=true;this.form.submit();">Envoyer le lien</button>
 		<div class="gnf-links">
-			<p><a href="{{url('customer/login')}}">{{lang('Se connecter')}}</a></p>
+			<p><a href="{{url('espace-client/connexion')}}">{{lang('Se connecter')}}</a></p>
 			<p><a href="{{url('/')}}">{{lang('Retour')}}</a></p>
 		</div>
 	</form>

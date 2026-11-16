@@ -6,7 +6,7 @@
 	$gnEyebrow = 'Contact';
 	$gnH1 = 'Contactez-nous';
 	$gnLead = 'Une question, une suggestion ou un problème sur la plateforme ? Écrivez à l’équipe GANXÔ.';
-	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('customer/login');
+	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('espace-client/connexion');
 @endphp
 
 @push('gn_head')
@@ -95,6 +95,12 @@
 			</div>
 		</aside>
 	</div>
+
+	<section class="gn-container" aria-labelledby="gnf-when-title" style="padding-block:var(--gn-space-7,3rem)"><div style="max-width:46rem">
+		<h2 id="gnf-when-title">Quand nous écrire ?</h2>
+		<p>Écrivez-nous pour une question sur la plateforme, une suggestion, une demande de partenariat ou de presse, ou pour signaler un problème technique. Décrivez votre demande en quelques lignes et indiquez une adresse e-mail où vous répondre : nous répondons dès que possible.</p>
+		<p>Si vous vivez une violence ou une détresse, ce formulaire n’est pas le bon chemin : <a href="{{ $gnAlertUrl }}">créez une alerte confidentielle</a>, ou posez vos questions à <a href="{{ url('/assistant') }}">l’assistant GANXÔ</a>, disponible à tout moment pour vous informer et vous orienter. Vous pouvez aussi nous écrire directement à <a href="mailto:{{ setting('contact_form_mail') ?: 'contact@ganho.app' }}">{{ setting('contact_form_mail') ?: 'contact@ganho.app' }}</a>.</p>
+	</div></section>
 </div>
 @endsection
 

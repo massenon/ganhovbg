@@ -19,7 +19,7 @@
 	$gcTitle = lang('Actualités');
 	$gcLead = ($title->articlesub ?? '') ?: 'Actualités et ressources sur le genre, la sexualité, les violences basées sur le genre et la dépression.';
 	$gcSearch = true;
-	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('customer/login');
+	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('espace-client/connexion');
 @endphp
 
 @push('gn_head')

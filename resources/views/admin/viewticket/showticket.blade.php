@@ -221,7 +221,7 @@
 					</div>
 					<div class="card-body pt-2 readmores px-6 mx-1">
 						<div>
-							<span>{!! $ticket->message !!}</span>
+							<span>{!! \App\Support\TicketText::html($ticket->message) !!}</span>
 
 							<div class="row galleryopen mt-4">
 								<div class="uhelp-attach-container flex-wrap">

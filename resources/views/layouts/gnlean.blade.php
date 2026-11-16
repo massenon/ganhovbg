@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="no-js">
+<html lang="fr" class="no-js">
 	<head>
 		@include('includes.seo')
 		@include('includes.gn.spa', ['zone' => 'public'])

@@ -54,10 +54,10 @@ class SeoController extends Controller
 
         $add('/', now(), 'weekly', '1.0');
         if (setting('GUEST_TICKET') == 'yes') {
-            $add('guest/openticket', null, 'yearly', '0.8');
+            $add('guest/openticket', $this->viewDate('guestticket/index'), 'yearly', '0.8');
         }
         if (\App\Models\AssistantSetting::flag('enabled')) {
-            $add('assistant', null, 'monthly', '0.7');
+            $add('assistant', $this->viewDate('assistantpage'), 'monthly', '0.7');
         }
         if (setting('FAQ_ENABLE') == 'yes') {
             $add('faq', optional(\App\Models\FAQ::where('status', '1')->latest('updated_at')->first())->updated_at, 'monthly', '0.8');
@@ -75,7 +75,7 @@ class SeoController extends Controller
             }
         }
         if (setting('CONTACT_ENABLE') == 'yes') {
-            $add('contact-us', null, 'yearly', '0.6');
+            $add('contact-us', $this->viewDate('contactform/contactus'), 'yearly', '0.6');
         }
         foreach (Pages::where('status', '1')->get() as $p) {
             $add('page/' . $p->pageslug, $p->updated_at, 'yearly', '0.4');
@@ -90,5 +90,12 @@ class SeoController extends Controller
         $xml .= '</urlset>' . "\n";
 
         return response($xml, 200, ['Content-Type' => 'application/xml; charset=UTF-8']);
+    }
+
+    /** Date de dernière modification d'une vue Blade (sitemap : pages sans date en base). */
+    private function viewDate($view)
+    {
+        $f = resource_path('views/' . $view . '.blade.php');
+        return is_file($f) ? \Carbon\Carbon::createFromTimestamp(filemtime($f)) : null;
     }
 }

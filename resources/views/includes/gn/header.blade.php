@@ -1,5 +1,5 @@
 @php
-	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('customer/login');
+	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('espace-client/connexion');
 @endphp
 <a class="gn-skip" href="#main">Aller au contenu</a>
 <header class="gh-nav">
@@ -19,7 +19,7 @@
 			@if (Auth::guard('customer')->check())
 				<a href="{{ url('customer/') }}">Mon espace</a>
 			@else
-				<a href="{{ url('customer/login') }}">Se connecter</a>
+				<a href="{{ url('espace-client/connexion') }}">Se connecter</a>
 			@endif
 			<a class="gn-btn gn-btn--primary" href="{{ $gnAlertUrl }}">Créer une alerte VBG</a>
 		</nav>

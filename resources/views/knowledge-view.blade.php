@@ -57,7 +57,7 @@
 		'isAccessibleForFree' => $gnPrivate ? 'False' : 'True',
 	]);
 	$seo = [
-		'title' => \Illuminate\Support\Str::limit($gnMetaTitle, 60, '…'),
+		'title' => \Illuminate\Support\Str::limit($gnMetaTitle, 59, '…'),
 		'description' => $gnDesc,
 		'canonical' => $gnCanonical,
 		'robots' => $gnPrivate ? 'noindex,follow' : null,
@@ -75,7 +75,7 @@
 	$seo = array_filter($seo, function ($v) { return $v !== null; });
 
 	$gnRelated = collect(method_exists($recentarticles ?? null, 'items') ? $recentarticles->items() : ($recentarticles ?? []))->filter(function ($a) use ($post) { return strtolower((string) $a->status) === 'published' && $a->id !== $post->id; })->take(3)->values();
-	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('customer/login');
+	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('espace-client/connexion');
 	$gnMedia = $gnCanRead ? $post->getMedia('article') : collect();
 	$gnLikes = $like->count();
 	$gnDislikes = $dislike->count();
@@ -175,7 +175,7 @@
 					@else
 						<div class="gc-notice" role="note">
 							<p><strong>Article réservé.</strong> Vous devez être connecté·e pour accéder à ce contenu.</p>
-							<p style="margin-top:var(--gn-space-3)"><a class="gn-btn gn-btn--primary" href="{{ url('customer/login') }}">Se connecter</a></p>
+							<p style="margin-top:var(--gn-space-3)"><a class="gn-btn gn-btn--primary" href="{{ url('espace-client/connexion') }}">Se connecter</a></p>
 						</div>
 					@endif
 				</div>

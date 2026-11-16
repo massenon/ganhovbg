@@ -9,7 +9,7 @@
 	$gnPath = '/page/' . $pages->pageslug;
 	$gnDesc = gn_excerpt($pages->pagedescription, 155);
 	if ($gnDesc === '') { $gnDesc = $gnName . ' : informations de GANXÔ Alerte VBG.'; }
-	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('customer/login');
+	$gnAlertUrl = setting('GUEST_TICKET') == 'yes' ? route('guest.ticket') : url('espace-client/connexion');
 
 	$seo = [
 		'title' => \Illuminate\Support\Str::limit($gnName, 48, '…') . ' | GANXÔ',
